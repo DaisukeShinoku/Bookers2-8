@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-# 一番上に上げたらうまく動いた、理由不明
-  devise_for :users
+# devise_for usersを一番上に上げたらうまく動いた、理由不明
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
+
   resources :users,only: [:show,:index,:edit,:update] do
     member do
       get :follows, :followers
